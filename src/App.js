@@ -1,35 +1,25 @@
-import React, {Component} from 'react';
-import './App.css';
-import Table from './learn/Table';
-import Form from './learn/Form';
-
+import React, { Component } from 'react';
+import EmployeeData from './EmployeeTable/EmployeeData';
 
 class App extends Component {
+    initialstate = {
+        isemployee:false , isticktacktoe: false
+    }
+    state = this.initialstate;
 
-  state = {
-    employee: []
-  }
+    handleChoose = (event) => {
 
-  handleSubmit = (employee) => {
-    this.setState({employee:[...this.state.employee,employee]})
-  }
-
-  removeEmployee = (index) => {
-    const {employee} = this.state;
-    this.setState({employee : employee.filter((emp,i) => i !== index)});
-  }
-
-  render(){
-    const {employee} = this.state;
-    return (
-      <div className="container">
-        <h1>Employee Details</h1>
-        <Table employeeData={employee} removeEmployee={this.removeEmployee}/>
-        <Form handleSubmit ={this.handleSubmit}/>
-      </div>
-    );
-  }
+    }
+    render() { 
+        const {isemployee, isticktacktoe} = this.state;
+        return ( 
+            <div className ="chooseContainer">
+                <input type= "button" name= "isemployee" value= "Employee Data" onClick= {()=>this.setState({isemployee:true})} />
+                <input type= "button" name= "isticktacktoe" value= "Tick Tack Toe" onClick= {()=>this.setState({isemployee:true})} />
+                {isemployee && <EmployeeData/>}
+            </div> 
+        );
+    }
 }
-
+ 
 export default App;
-
